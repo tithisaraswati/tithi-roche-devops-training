@@ -9,5 +9,21 @@ resource "aws_instance" "example" {
       "Name" = var.vm-name #"tithi-vm-1"
     }
   
-}
 
+  #terraform provisioner
+  provisioner "remote-exec"{
+      inline = [ 
+        "sudo dnf install git httpd -y",
+        "mkdir -p hello/terraform"
+       ]
+  }
+  connection {
+    type = "ssh"
+    user = "ec2-user"
+    host = self.public_ip
+    #content if private key data
+    private_key= tls_private_key.my_private_key.private_key_pem
+  }
+
+
+}

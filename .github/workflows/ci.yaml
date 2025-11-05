@@ -22,7 +22,7 @@ jobs:
         ref: dryrun_aws
     #installing terraform
     - name: installing terraform
-    - uses: hashicorp/setup-terraform@v3
+      uses: hashicorp/setup-terraform@v3
     #github actions
     - name: my first step to test gothub action
       run: |

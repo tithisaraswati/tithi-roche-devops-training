@@ -12,4 +12,6 @@ output "my-ec2-id" {
 resource "local_file" "my-ip-data" {
   content  =  aws_instance.example.public_ip
   filename = "${path.module}/myip.txt"
+  #Making manual dependency 
+  depends_on = [ aws_instance.example ]
 }

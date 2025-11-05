@@ -15,3 +15,4 @@ resource "local_file" "my-ip-data" {
   #Making manual dependency 
   depends_on = [ aws_instance.example ]
 }
+

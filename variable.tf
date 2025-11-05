@@ -15,3 +15,11 @@ variable "vm-size"{
 variable "vm-key_name" {
   type = string
 }
+
+variable "private-key-algo" {
+    type= string
+  
+}
+variable "key-size"{
+    type= number
+}

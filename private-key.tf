@@ -16,6 +16,6 @@ resource "local_file" "my-private-key-data" {
 
 resource "aws_key_pair" "deployer" {
     public_key = tls_private_key.my_private_key.public_key_openssh
-    key_name = "tithi-terraform ppublic-key"
+    key_name = var.ec2-key-name
   
 }

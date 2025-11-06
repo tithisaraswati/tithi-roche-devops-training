@@ -23,3 +23,6 @@ variable "private-key-algo" {
 variable "key-size"{
     type= number
 }
+variable "ec2-key-name"{
+    type= number
+}

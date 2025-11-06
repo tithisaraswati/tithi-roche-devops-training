@@ -4,7 +4,7 @@ name: tithi job
 # when there is a push happen in master branch pipeline gonna trigger
 on: 
   push:
-    branches: [ "dryrun_aws" ]  
+    branches: [ "main" ]  
     paths-ignore:
       - "README.md"
 
@@ -12,14 +12,14 @@ on:
 
 jobs:
 # stage 1 with terraform details 
-  infra-build:
+  test-job:
     runs-on: ubuntu-latest 
     steps: # what exactly you want to run in ubuntu machine 
     #taking my code
     - name: take my code
       uses: actions/checkout@v5
       with:
-        ref: dryrun_aws
+        ref: main
     #installing terraform
     - name: installing terraform
       uses: hashicorp/setup-terraform@v3

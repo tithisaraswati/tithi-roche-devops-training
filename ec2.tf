@@ -22,6 +22,7 @@ resource "aws_instance" "example" {
     user = "ec2-user"
     host = self.public_ip
     #content if private key data
+    timeout = "3m"
     private_key= tls_private_key.my_private_key.private_key_pem
   }
 

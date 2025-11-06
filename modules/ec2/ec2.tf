@@ -2,11 +2,14 @@
 resource "aws_instance" "example" {
     #ami = "ami-0a25a306450a2cba3"
     ami = var.tithi-ami-id
+    count = var.novm
     instance_type = var.vm-size #"t2.nano"
     key_name = aws_key_pair.deployer.key_name
+    #security_groups = aws_security_group.example.name
+    vpc_security_group_ids = [ aws_security_group.allow_tls.id]
     #changing tags_all to tags
     tags = {
-      "Name" = var.vm-name #"tithi-vm-1"
+      "Name" = "${var.vm-name}-${count.index}"
     }
   
 

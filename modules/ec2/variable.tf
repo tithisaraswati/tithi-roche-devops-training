@@ -24,5 +24,9 @@ variable "key-size"{
     type= number
 }
 variable "ec2-key-name"{
-    type= number
+    type= string
 }
+
+variable "my-vpc-id"{}
+variable "my-security-group" {}
+variable "novm" {}

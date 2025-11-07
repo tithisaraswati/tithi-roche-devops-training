@@ -58,10 +58,13 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: tithi-artifact
-        path: modules/ec2/ansible-inventory.txt
+        path: |
+          modules/ec2/ansible-inventory.txt
+          modules/ec2/tithi-private-key.pem
+
 
 #ansible part    
-  infra-destroy-job:
+  infra-configure-job:
     needs: infra-provission-job
     runs-on: ubuntu-latest 
     steps:
@@ -69,6 +72,11 @@ jobs:
       uses: actions/checkout@v5
       with:
         ref: main
+        sparse-checkout: |
+          my-ansible
+    - name: verify checkout
+      run: |
+        ls -R
     - name: connecting with aws
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -83,16 +91,19 @@ jobs:
     #listing artifact
     - name: display the structure of downloaded file 
       run: ls -R
-    #installing terraform
-    - name: installing terraform
-      uses: hashicorp/setup-terraform@v3
-    #destroying
-    - name: destroy terraform
+    #installing ansible
+    - name: installing ansible
       run: |
-        echo "destroying aws job"
-        terraform init 
-        terraform state list
-        terraform destroy --auto-approve
+        echo "setup ansible in ubuntu machine"
+        sudo apt update
+        sudo apy install andible -youansible -version
+    # #destroying
+    # - name: destroy terraform
+    #   run: |
+    #     echo "destroying aws job"
+    #     terraform init 
+    #     terraform state list
+    #     terraform destroy --auto-approve
 
 
     

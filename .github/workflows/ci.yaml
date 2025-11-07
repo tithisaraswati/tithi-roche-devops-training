@@ -52,7 +52,7 @@ jobs:
         terraform plan
         sleep 2
         terraform apply --auto-approve
-        ls module/ec2
+        ls modules/ec2
     #Creating artifact and upload the inventory file
     - name: uploading ansible inventory to github artifacts
       uses: actions/upload-artifact@v4

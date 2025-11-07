@@ -101,6 +101,7 @@ jobs:
     - name: running ansible playbook in dynamic inventory
       run: |
         echo "running ansible playbook"
+        chmod 400 tithi-private-key.pem
         cd my-ansible
         ansible-playbook -i ../ansible-inventory.txt --private-key ../tithi-private-key.pem playbook1.yaml
 

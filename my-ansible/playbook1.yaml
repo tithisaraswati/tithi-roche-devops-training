@@ -1,35 +1,6 @@
 ---
 - name: defining target group
-  hosts: tithi-roche-ip
+    hosts: tithi-roche-ip
+    roles: 
+    - apache-webserver
 
-  #defining variables
-  vars:
-    x: httpd
-    z: git
-
-  #become true means sudo access
-  become: true
-  tasks:
-  - name: testing ping module 
-    ping: 
-
-  - name: running sample commands
-    command: date
-
-  - name: Insatalling {{ x }} and {{ z }} software in target amazon linux machine
-    yum:
-      name: 
-      - "{{ x }}"
-      - "{{ z }}"
-      state: present
-
-  - name: copy code to httpd app server location
-    copy:
-      src: myapps/index.html
-      dest: /var/www/html/
-
-  - name: starting {{ x }} service
-    service:
-      name: "{{ x }}"
-      state: started
-      enabled : yes

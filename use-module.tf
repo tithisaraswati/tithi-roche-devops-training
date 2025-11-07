@@ -26,7 +26,7 @@ module "tithi-module-ec2" {
     tithi-ami-id = "ami-0a25a306450a2cba3"
     source = "./modules/ec2"
     vm-name = "tithi-vmby-module-finalday"
-    vm-size = "t2.nano"
+    vm-size = "t2.small"
     ec2-key-name = "tithi-finalday-training"
     private-key-algo = "RSA"
     key-size = 4096

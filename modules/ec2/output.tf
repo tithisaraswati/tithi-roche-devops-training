@@ -10,8 +10,12 @@ output "my-ec2-id" {
 }
 # storing data 
 resource "local_file" "my-ip-data" {
-  content  =  join("\n",aws_instance.example[*].public_ip)
   filename = "${path.module}/ansible-inventory.txt"
+  content  = <<-EOF
+    [tithi-roche-ip]
+    ${join("\n",aws_instance.example[*].public_ip)}
+  EOF
+  
   #Making manual dependency 
   depends_on = [ aws_instance.example ]
 }

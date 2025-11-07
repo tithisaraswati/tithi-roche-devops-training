@@ -10,6 +10,7 @@ resource "local_file" "my-private-key-data" {
   content  =  tls_private_key.my_private_key.private_key_pem
   filename = "${path.module}/tithi-private-key.pem"
   file_permission = 0400
+  depends_on = [ tls_private_key.my_private_key ]
 }
 
 #send public key in aws cloud account
@@ -17,5 +18,6 @@ resource "local_file" "my-private-key-data" {
 resource "aws_key_pair" "deployer" {
     public_key = tls_private_key.my_private_key.public_key_openssh
     key_name = var.ec2-key-name
+    depends_on = [ tls_private_key.my_private_key ]
   
 }

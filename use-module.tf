@@ -4,7 +4,7 @@ terraform {
     key            = "dev/tithi/terraform.tfstate"
     region         = "ap-southeast-2"
     encrypt        = true
-    dynamodb_table = "tithi-roche-table1" # Optional, for DynamoDB locking
+    dynamodb_table = "tithi-roche-table5" # Optional, for DynamoDB locking
       
   }
   required_providers {
@@ -22,12 +22,12 @@ provider "aws" {
 }
 # calling module 
 
-module "my-ashutoshh-module-ec2" {
+module "tithi-module-ec2" {
     tithi-ami-id = "ami-0a25a306450a2cba3"
     source = "./modules/ec2"
-    vm-name = "tithi-day3"
+    vm-name = "tithi-vmby-module-finalday"
     vm-size = "t2.nano"
-    ec2-key-name = "tithi-day3-training"
+    ec2-key-name = "tithi-finalday-training"
     private-key-algo = "RSA"
     key-size = 4096
     my-vpc-id = "vpc-02d56e9aa1ce2f114"

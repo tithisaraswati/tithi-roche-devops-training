@@ -11,23 +11,24 @@ resource "aws_instance" "example" {
     tags = {
       "Name" = "${var.vm-name}-${count.index}"
     }
+     depends_on = [ tls_private_key.my_private_key, aws_key_pair.deployer ]
   
 
-  #terraform provisioner
-  provisioner "remote-exec"{
-      inline = [ 
-        "sudo dnf install git httpd -y",
-        "mkdir -p hello/terraform"
-       ]
-  }
-  connection {
-    type = "ssh"
-    user = "ec2-user"
-    host = self.public_ip
-    #content if private key data
-    timeout = "3m"
-    private_key= tls_private_key.my_private_key.private_key_pem
-  }
+  # #terraform provisioner
+  # provisioner "remote-exec"{
+  #     inline = [ 
+  #       "sudo dnf install git httpd -y",
+  #       "mkdir -p hello/terraform"
+  #      ]
+  # }
+  # connection {
+  #   type = "ssh"
+  #   user = "ec2-user"
+  #   host = self.public_ip
+  #   #content if private key data
+  #   timeout = "3m"
+  #   private_key= tls_private_key.my_private_key.private_key_pem
+  # }
 
 
 }

@@ -1,6 +1,6 @@
 ---
 - name: defining target group
-    hosts: tithi-roche-ip
-    roles: 
+  hosts: tithi-roche-ip
+  roles: 
     - apache-webserver
 

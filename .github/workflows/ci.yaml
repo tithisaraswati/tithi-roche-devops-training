@@ -96,7 +96,8 @@ jobs:
       run: |
         echo "setup ansible in ubuntu machine"
         sudo apt update
-        sudo apy install andible -youansible -version
+        sudo apt install ansible -y
+        ansible --version
     # #destroying
     # - name: destroy terraform
     #   run: |

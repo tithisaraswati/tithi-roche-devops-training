@@ -1,6 +1,6 @@
 ---
 - name: defining target group
-  hosts: web-servers
+  hosts: tithi-roche-ip
 
   #defining variables
   vars:
@@ -26,9 +26,10 @@
   - name: copy code to httpd app server location
     copy:
       src: myapps/index.html
-      dest: /var/www/html/tithi.html
+      dest: /var/www/html/
 
   - name: starting {{ x }} service
     service:
       name: "{{ x }}"
       state: started
+      enable : yes
